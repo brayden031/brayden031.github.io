@@ -1,5 +1,5 @@
 ---
-title: "CanaryTokens: Reverse engineering .exe CanaryTokens to reveal the callback tripwire."
+title: "Reverse engineering CanaryTokens to reveal the callback tripwire."
 classes: wide
 header:
   teaser: /assets/images/malware-analysis/canary/cover.jpg
