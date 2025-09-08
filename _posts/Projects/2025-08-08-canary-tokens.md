@@ -1,8 +1,8 @@
 ---
-title: "Reverse engineering CanaryTokens to reveal the callback tripwire."
+title: "Reverse engineering canary tokens to reveal the callback tripwire."
 classes: wide
 header:
-  teaser: /assets/images/malware-analysis/canary/cover.jpg
+  teaser: /assets/images/malware-analysis/canary/cover_photo.jpg
 ribbon: MidnightBlue
 description: "Explores how Canarytokens leverage Authenticode certificates to embed an OCSP/CRL callback beacon."
 categories:
