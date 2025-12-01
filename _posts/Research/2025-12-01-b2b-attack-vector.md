@@ -24,3 +24,9 @@ Essentially, allowing a threat actor to exploit a blind spot within organisation
 This blog is based off the initial news article produced by 'Bleeping Computer' followed by the blog post put out by 'ontinue' that details the specifics of this attack vector.
 
 This research runs in parallel but with it differing by specifically looking at detection logic, post-compromise tracking activity, and overall mitigations.
+
+# KQL detection logic
+
+# Post-compromise tracking activity
+
+# Mitigations
