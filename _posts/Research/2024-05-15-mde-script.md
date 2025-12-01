@@ -6,7 +6,7 @@ header:
 ribbon: MidnightBlue
 description: "Powershell script to safely extract potentially malicious files from an endpoint by combining 7-Zip and MDE's live response getfile feature."
 categories:
-  - Project
+  - Research
 tags:
   - Project
   - MDE

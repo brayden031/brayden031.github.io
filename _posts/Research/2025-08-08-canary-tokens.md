@@ -6,7 +6,7 @@ header:
 ribbon: MidnightBlue
 description: "Explores how Canarytokens leverage Authenticode certificates to embed an OCSP/CRL callback beacon."
 categories:
-  - Project
+  - Research
 tags:
   - Writeup
 toc: true

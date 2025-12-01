@@ -6,7 +6,7 @@ header:
 ribbon: MidnightBlue
 description: "Varalyze is a threat intelligence tool suite that combines a diverse range of web-based applications into one seamless platform through the use of APIs and python libraries."
 categories:
-  - Project
+  - Research
 toc: true
 ---
 
