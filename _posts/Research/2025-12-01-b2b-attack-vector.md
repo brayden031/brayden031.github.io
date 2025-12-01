@@ -58,8 +58,6 @@ This new feature has already been released in a targeted format throughout Novem
 
 https://thehackernews.com/2025/11/ms-teams-guest-access-can-remove.html
 https://www.ontinue.com/resource/blog-microsoft-chat-with-anyone-understanding-phishing-risk/
-
-## Mitigation sources:
 https://learn.microsoft.com/en-us/entra/external-id/allow-deny-list
 https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview
 https://learn.microsoft.com/en-us/microsoftteams/trusted-organizations-external-meetings-chat?tabs=organization-settings
