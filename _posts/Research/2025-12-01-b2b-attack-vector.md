@@ -29,4 +29,37 @@ This research runs in parallel but with it differing by specifically looking at 
 
 # Post-compromise tracking activity
 
+Following the detections if it has been determined the victim user accepted the invitation, then the following methods can be used to map the tenant ID to the tenant company name.
+
+PowerShell module to get a company display name and the default domain of a tenant by Id:
+https://www.powershellgallery.com/packages/MSIdentityTools/2.0.70
+ 
+Alternatively, this information can be found by querying the Microsoft graph API with the following line:
+ 
+Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/tenantRelationships/findTenantInformationByTenantId(tenantId='x')"
+
+This is necessary in identifying whether the external tenant is expected within the environment. If not, from here additional OSINT will be required to see whether this is part of a known threat actors campaign. Alongside this initiating a thorough endpoint/user account investigation for the involved entities.
+
 # Mitigations
+
+This new attack vector can be protected against using the following strategies:
+
+1. Restrict B2B collaboration in ENTRA settings 
+2. Implement Cross-Tenant Access Policies 
+3. Restrict External Teams Communication 
+4. Applying above detection logic
+5. User training against this new attack vector
+
+# Conclusion
+
+This new feature has already been released in a targeted format throughout November and is expected to be fully released in January 2026. Therefore, it's critical to ensure the above mitigations are in place before threat actors have the ability to start adopting this into their TTPs.
+
+# Sources
+
+https://thehackernews.com/2025/11/ms-teams-guest-access-can-remove.html
+https://www.ontinue.com/resource/blog-microsoft-chat-with-anyone-understanding-phishing-risk/
+
+## Mitigation sources:
+https://learn.microsoft.com/en-us/entra/external-id/allow-deny-list
+https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview
+https://learn.microsoft.com/en-us/microsoftteams/trusted-organizations-external-meetings-chat?tabs=organization-settings
