@@ -42,7 +42,38 @@ SigninLogs
 ```
 This second query aims to track the entire process by mapping out initial phishing attempt victims followed by successfull sign ins to that specific external guest tenant. Providing a much likely indicator of compromise.
 
-* Detection still being refined currently, will be updated shortly *
+* Detection still being refined as needs joining events together along with testing. Not ready for production! 
+
+```
+let lookbackDays = 7d;
+let trusted_tenants = dynamic([""]); // FP expected external tenants
+let internal_domains = dynamic([""]); //  Filter out internal teams traffic
+// -- Email avenue only relevant to victims with no microsoft teams which is less likely but still worthy to monitor --
+let TeamsInviteEmails = EmailEvents
+| where TimeGenerated >= ago(lookbackDays)
+| where SenderFromAddress has_cs "teams.microsoft.com" // Region variants exist so looks to match domain instead
+| where Subject has_cs "sent you a message" or Subject has_cs "has sent you a message"
+| project InviteTime = TimeGenerated, RecipientEmailAddress, RecipientDomain = RecipientDomain, SenderFromAddress, Subject;
+// -- Monitor for external domain messages to users --
+OfficeActivity
+| where CommunicationType == "OneonOne" or CommunicationType == "GroupChat"
+| where RecordType == "MicrosoftTeams"
+| extend UserId contains "@"
+| extend ExternalDomain = tostring(split(UserId, "@")[1])
+| where ExternalDomain !in (internal_domains)
+| where isnotempty(ExternalDomain)
+| where Operation in~("MessageCreatedHasLink", "MessageSent", "MessageEditedHasLink")
+| extend Activity = case(Operation == "MessageSent", "External message received", Operation == "MessageCreatedHasLink", "External message contains link", Operation == "MessageEditedHasLink", "External message edited contains link", "External message received")
+| project InviteTime = TimeGenerated, Activity, ExternalDomain, UserId, ClientIP;
+// -- Successful sign-ins to external tenants by filtering out any known internal tenants -- 
+let Signins = SigninLogs
+| where TimeGenerated >= ago(lookbackDays)
+| where AppDisplayName has "Microsoft Teams" and ResultType == 0
+| where UserType == "Member" and CrossTenantAccessType == "b2bCollaboration"
+| where ResourceTenantId !in (trusted_tenants)
+| where isnotempty(ResourceTenantId) and isnotempty(HomeTenantId) and ResourceTenantId != HomeTenantId
+| project TimeGenerated, IPAddress, Location, UserPrincipalName, UserDisplayName,  ExternalTenantID = ResourceTenantId, ExternalTenantName = ResourceDisplayName
+```
 
 # Post-compromise tracking activity
 
