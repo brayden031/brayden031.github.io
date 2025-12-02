@@ -31,13 +31,15 @@ These detections leverage KQL (Kusto-Query-Language) to identify phases 3 & 4 as
 
 The first detection is a simplified search that looks for successfull teams sign ins to external guest tenants. Even though this is effective, it doesn't fully track the entire attack chain so has a lower true positive confidence than the second query.
 
+```
+let trusted_tenants = dynamic([]);
 SigninLogs
 | where AppDisplayName has "Microsoft Teams" and ResultType == 0
 | where UserType == "Member" and CrossTenantAccessType == "b2bCollaboration"
 | where ResourceTenantId !in (trusted_tenants)
 | where isnotempty(ResourceTenantId) and isnotempty(HomeTenantId) and ResourceTenantId != HomeTenantId
 | project TimeGenerated, IPAddress, Location, UserPrincipalName, UserDisplayName,  ExternalTenantID = ResourceTenantId, ExternalTenantName = ResourceDisplayName
-
+```
 This second query aims to track the entire process by mapping out initial phishing attempt victims followed by successfull sign ins to that specific external guest tenant. Providing a much likely indicator of compromise.
 
 * Detection still being refined currently, will be updated shortly *
