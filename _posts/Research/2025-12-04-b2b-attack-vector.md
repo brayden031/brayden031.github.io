@@ -29,7 +29,7 @@ This research runs in parallel but with it differing by specifically looking at 
 
 These detections leverage KQL (Kusto-Query-Language) to identify phases 3 & 4 as identified in the ontinue blog to look for users receiving invites to external tenants.
 
-The first detection is a simplified search that looks for successfull teams sign ins to external guest tenants. Even though this is effective, it doesn't fully track the entire attack chain so has a lower true positive confidence than the second query.
+The first detection is a simplified search that looks for successful teams sign ins to external guest tenants. Even though this is effective, it doesn't fully track the entire attack chain so has a lower true positive confidence than the second query.
 
 ```
 let trusted_tenants = dynamic([]);
@@ -41,7 +41,7 @@ SigninLogs
 | project TimeGenerated, IPAddress, Location, UserPrincipalName, UserDisplayName,  ExternalTenantID = ResourceTenantId, ExternalTenantName = ResourceDisplayName
 ```
 
-This second query aims to track the wider process by mapping out the invite event followed by successfull sign ins to an external tenant. Providing a much likely indicator of compromise.
+This second query aims to track the wider process by mapping out the invite event followed by successful sign ins to an external tenant. Providing a much likely indicator of compromise.
 
 ```
 let lookbackDays = 7d;
@@ -75,7 +75,7 @@ Note: I did also try to include the teams message activity for this attack vecto
 
 # Post-compromise tracking activity
 
-Following the detections if it has been determined the victim user accepted the invitation, then the following methods can be used to map the tenant ID to the tenant company name.
+Following the detections if it has been determined the user accepted the invitation, then the following methods can be used to map the tenant ID to the tenant company name.
 
 PowerShell module to get a company display name and the default domain of a tenant by Id:
 https://www.powershellgallery.com/packages/MSIdentityTools/2.0.70
