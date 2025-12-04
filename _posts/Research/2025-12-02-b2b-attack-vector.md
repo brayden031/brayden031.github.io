@@ -71,7 +71,7 @@ TeamsInviteEmails
 
 This query is still being refined as yet to see an in the wild case to verify this accurately triggers. However, I have used LLM sample data against these queries which have proven successful in both true positive and false positive events. 
 
-Note: I did also try to include the teams message activity for this attack vector however this proved difficult given the appropriate tables (OfficeActivity & CloudAppEvents) don't pull enough relevant data (sender & recipient) for tracking this.
+Note: I did also try to include the teams message activity for this attack vector however this proved difficult given the appropriate tables (OfficeActivity & CloudAppEvents) don't pull enough relevant data (sender & recipient) for tracking this. Additionally, if there are any improvements/suggestions please reach out!
 
 # Post-compromise tracking activity
 
