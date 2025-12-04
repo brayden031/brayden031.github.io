@@ -4,7 +4,7 @@ classes: wide
 header:
   teaser: /assets/images/projects/Teams/output.jpg
 ribbon: MidnightBlue
-description: "A technical deep dive into how B2B guest invites in Microsoft Teams can be detected, traced, and contained before they evolve into a full attack vector."
+description: "A technical deep dive into how B2B guest invites in Microsoft Teams can be detected, traced, and contained."
 categories:
   - Research
 toc: true
