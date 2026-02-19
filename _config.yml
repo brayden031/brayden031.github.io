@@ -93,7 +93,7 @@ analytics:
 author:
   name: "Brayden Birch"
   avatar: /assets/images/site_data/img.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "Security Analyst interested in malware analysis & reverse engineering."
+  bio: "Senior Security Analyst interested in DFIR & Threat Research"
   email:
   links:
     - label: "Website"
